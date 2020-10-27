@@ -82,9 +82,12 @@ task('images', done => {
 
   src('./images/@raws/**')
     .pipe(changed('./images'))
-    .pipe(imageMin({
-
-    }))
+    .pipe(imageMin([
+      imageMin.mozjpeg({
+        quality: 82,
+        progressive: true,
+      })
+    ]))
     .pipe(dest('./images'));
 
   done();
