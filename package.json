@@ -1,0 +1,33 @@
+{
+  "name": "wp-fortune-html",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "BoatKung",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "watch": "cross-env NODE_ENV=development gulp watch",
+    "serve": "cross-env NODE_ENV=development gulp serve",
+    "build": "cross-env NODE_ENV=production gulp build",
+    "start": "yarn --prod=false && yarn serve",
+    "public": "yarn build && yarn --prod=true"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.3",
+    "@babel/preset-env": "^7.12.1",
+    "babel-loader": "^8.1.0",
+    "browser-sync": "^2.26.13",
+    "cross-env": "^7.0.2",
+    "dart-sass": "^1.25.0",
+    "gulp": "^4.0.2",
+    "gulp-cached": "^1.1.1",
+    "gulp-changed": "^4.0.2",
+    "gulp-imagemin": "^7.1.0",
+    "gulp-plumber": "^1.2.1",
+    "gulp-postcss": "^9.0.0",
+    "gulp-rename": "^2.0.0",
+    "gulp-sass": "^4.1.0",
+    "postcss-preset-env": "^6.7.0",
+    "webpack-stream": "^6.1.0"
+  }
+}
