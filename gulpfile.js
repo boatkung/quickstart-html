@@ -37,7 +37,7 @@ task('style', () => {
 });
 
 task('script', () => {
-  return src('./assets/js/index.js')
+  return src('./assets/es/index.js')
     .pipe(plumber())
     .pipe(webpack({
       mode: MODE,
@@ -117,7 +117,7 @@ task('watch', () => {
   ], parallel('style'));
 
   watch([
-    './assets/js/**/*.js',
+    './assets/es/**/*.js',
   ], series('script', reload));
 
   watch([
