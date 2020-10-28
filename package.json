@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "author": "BoatKung",
   "license": "MIT",
-  "private": true,
   "keywords": [
     "yarn",
     "gulp",
