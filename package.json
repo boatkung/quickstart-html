@@ -4,7 +4,11 @@
   "author": "BoatKung",
   "license": "MIT",
   "private": true,
-  "keywords": ["yarn", "gulp", "html"],
+  "keywords": [
+    "yarn",
+    "gulp",
+    "html"
+  ],
   "scripts": {
     "watch": "cross-env NODE_ENV=development gulp watch",
     "serve": "cross-env NODE_ENV=development gulp serve",
@@ -18,6 +22,7 @@
     "babel-loader": "^8.1.0",
     "browser-sync": "^2.26.13",
     "cross-env": "^7.0.2",
+    "cssnano": "^4.1.10",
     "dart-sass": "^1.25.0",
     "gulp": "^4.0.2",
     "gulp-cached": "^1.1.1",

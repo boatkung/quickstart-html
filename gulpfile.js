@@ -3,6 +3,7 @@ var sass = require('gulp-sass');
 sass.compiler = require('dart-sass');
 var postcss = require('gulp-postcss');
 var postcssPresetEnv = require('postcss-preset-env');
+var cssnano = require('cssnano');
 var cached = require('gulp-cached');
 var plumber = require('gulp-plumber');
 var webpack = require('webpack-stream');
@@ -15,15 +16,21 @@ const MODE = process.env.NODE_ENV || 'development';
 var isProduction = () => MODE === 'production';
 
 task('style', () => {
+  var postcssConfigs = [
+    postcssPresetEnv({
+      autoprefixer: true,
+    }),
+  ];
+
+  if (isProduction()) {
+    postcssConfigs.push(cssnano())
+  }
+
   return src('./assets/scss/index.scss', {sourcemaps:true})
     .pipe(plumber())
     .pipe(cached('style'))
     .pipe(sass.sync())
-    .pipe(postcss([
-      postcssPresetEnv({
-        autoprefixer: true,
-      })
-    ]))
+    .pipe(postcss(postcssConfigs))
     .pipe(rename({
       basename: 'main',
     }))
@@ -54,11 +61,6 @@ task('script', () => {
           },
         ]
       },
-      watchOptions: {
-        ignored: [
-          'node_modules/**',
-        ],
-      },
       output: {
         filename: 'main.js',
       },
@@ -71,6 +73,7 @@ task('script', () => {
 
 task('images', done => {
   src('./assets/img/@raws/**')
+    .pipe(plumber())
     .pipe(changed('./assets/img'))
     .pipe(imageMin([
       imageMin.mozjpeg({
@@ -81,6 +84,7 @@ task('images', done => {
     .pipe(dest('./assets/img'));
 
   src('./images/@raws/**')
+    .pipe(plumber())
     .pipe(changed('./images'))
     .pipe(imageMin([
       imageMin.mozjpeg({
@@ -102,6 +106,9 @@ task('server', () => {
   return browser.init({
     open: false,
     server: true,
+    ignore: [
+      'node_modules/**',
+    ],
     middleware: function (req, res, next) {
       res.setHeader('Expires', '0');
       res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
