@@ -1,10 +1,10 @@
 {
-  "name": "wp-fortune-html",
+  "name": "quickstart-html",
   "version": "1.0.0",
-  "main": "index.js",
   "author": "BoatKung",
   "license": "MIT",
   "private": true,
+  "keywords": ["yarn", "gulp", "html"],
   "scripts": {
     "watch": "cross-env NODE_ENV=development gulp watch",
     "serve": "cross-env NODE_ENV=development gulp serve",
